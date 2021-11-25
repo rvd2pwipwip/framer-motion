@@ -2,15 +2,50 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const containerVariants = {
+  start: {
+    x: "40vw",
+    opacity: 0,
+  },
+  end: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      delay: 0.5,
+      stiffness: 120,
+    },
+  },
+};
+
+const nextVariants = {
+  start: {
+    x: "-20vw",
+    opacity: 0,
+  },
+  end: {
+    x: 0,
+    opacity: 1,
+  },
+  transition: {
+    type: "spring",
+    stiffness: 120,
+  },
+};
+
+const listVariant = {
+
+}
+
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   return (
     <motion.div
       className="base container"
-      initial={{ x: "40vw", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ type: "spring", delay: 0.5, stiffness: 120 }}
+      variants={containerVariants}
+      initial="start"
+      animate="end"
     >
       <h3>Step 1: Choose Your Base</h3>
       <ul>
@@ -32,9 +67,7 @@ const Base = ({ addBase, pizza }) => {
       {pizza.base && (
         <motion.div
           className="next"
-          initial={{ x: "-20vw", opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 120 }}
+          variants={nextVariants}
         >
           <Link to="/toppings">
             <motion.button
