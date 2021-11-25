@@ -33,10 +33,6 @@ const nextVariants = {
   },
 };
 
-const listVariant = {
-
-}
-
 const Base = ({ addBase, pizza }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
