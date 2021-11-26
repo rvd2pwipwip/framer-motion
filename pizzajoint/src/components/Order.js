@@ -43,7 +43,10 @@ const Order = ({ pizza }) => {
     >
       <AnimatePresence>
         {showTitle && (
-          <motion.h2 exit={{ y: "-100vh" }}>
+          <motion.h2
+            exit={{ y: "-100vh" }}
+            transition={{ type: "tween", duration: 0.5, ease: "easeIn" }}
+          >
             Thank you for your order :)
           </motion.h2>
         )}
