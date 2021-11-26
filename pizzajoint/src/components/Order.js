@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const containerVariants = {
   start: {
@@ -14,7 +14,7 @@ const containerVariants = {
       mass: 0.4,
       damping: 8,
       when: "beforeChildren",
-      staggerChildren: 0.4
+      staggerChildren: 0.4,
     },
   },
 };
@@ -29,6 +29,11 @@ const childVariants = {
 };
 
 const Order = ({ pizza }) => {
+  const [showTitle, setShowTitle] = useState(true);
+  setTimeout(() => {
+    setShowTitle(false);
+  }, 4000);
+
   return (
     <motion.div
       className="container order"
@@ -36,7 +41,14 @@ const Order = ({ pizza }) => {
       initial="start"
       animate="end"
     >
-      <h2>Thank you for your order :)</h2>
+      <AnimatePresence>
+        {showTitle && (
+          <motion.h2 exit={{ y: "-100vh" }}>
+            Thank you for your order :)
+          </motion.h2>
+        )}
+      </AnimatePresence>
+
       <motion.p variants={childVariants}>
         You ordered a {pizza.base} pizza with:
       </motion.p>
