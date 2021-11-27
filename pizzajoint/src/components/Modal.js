@@ -9,13 +9,13 @@ const scrim = {
 
 const modal = {
   start: {
-    y: "-100vh",
+    y: "-50vh",
     opacity: 0,
   },
   end: {
     y: "25vh",
     opacity: 1,
-    transition: { delay: 0.5 },
+    transition: { delay: 0.5, type: "spring", damping: 12, mass: 0.75, stiffness: 150 },
   },
 };
 
