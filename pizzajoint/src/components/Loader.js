@@ -1,8 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useCycle } from "framer-motion";
 
 const loaderVariants = {
-  start: {
+  bounce1: {
     x: [-20, 20],
     y: [0, -30],
     transition: {
@@ -13,21 +13,33 @@ const loaderVariants = {
       y: {
         yoyo: Infinity,
         duration: 0.25,
-        ease: "easeOut"
+        ease: "easeOut",
       },
     },
   },
-  end: {},
+  bounce2: {
+    y: [0, -40],
+    x: 0,
+    transition: {
+      y: {
+        yoyo: Infinity,
+        duration: 0.25,
+        ease: "easeOut",
+      },
+    }
+  },
 };
 
 const Loader = () => {
-  return (
+  const [bounce, cycleBounce] = useCycle("bounce1", "bounce2")
+  return ( 
     <>
       <motion.div
         className="loader"
         variants={loaderVariants}
-        animate="start"
+        animate={bounce}
       ></motion.div>
+      <div onClick={() => cycleBounce()}>Cycle loader</div>
     </>
   );
 };
